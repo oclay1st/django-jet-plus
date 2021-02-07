@@ -2,10 +2,9 @@
 Django JET Plus
 ===============
 
-Django JET Plus comes to support Django3 and Python 3 versions
-
 **Modern template for Django admin interface with improved functionality**
 
+Django JET Plus comes to support Django3 and Python 3 versions
     
 * Documentation: http://jet.readthedocs.org/
 
@@ -28,9 +27,7 @@ Installation
 
 .. code:: python
 
-    pip install django-jet
-    # or
-    easy_install django-jet
+    pip install git@github.com:oclay1st/django-jet-plus.git
 
 * Add 'jet' application to the INSTALLED_APPS setting of your Django project settings.py file (note it should be before 'django.contrib.admin'):
 
@@ -77,9 +74,7 @@ Installation
 .. code:: python
 
     python manage.py migrate jet
-    # or 
-    python manage.py syncdb
-        
+
 * Collect static if you are in production environment:
 
 .. code:: python
@@ -129,8 +124,6 @@ Dashboard installation
 .. code:: python
 
     python manage.py migrate dashboard
-    # or
-    python manage.py syncdb
 
 * Collect static if you are in production environment:
 
