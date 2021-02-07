@@ -9,12 +9,9 @@ import operator
 from jet.models import Bookmark, PinnedApplication
 from jet.utils import get_model_instance_label, user_is_authenticated
 from functools import reduce
+from django.apps import apps
 
-try:
-    from django.apps import apps
-    get_model = apps.get_model
-except ImportError:
-    from django.db.models.loading import get_model
+get_model = apps.get_model
 
 
 class AddBookmarkForm(forms.ModelForm):

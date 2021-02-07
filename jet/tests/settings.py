@@ -68,3 +68,16 @@ STATIC_URL = '/static/'
 
 JET_INDEX_DASHBOARD = 'jet.tests.dashboard.TestIndexDashboard'
 JET_APP_INDEX_DASHBOARD = 'jet.tests.dashboard.TestAppIndexDashboard'
+JET_SIDE_MENU_CUSTOM_APPS = [
+    ('auth', [
+        'Group',
+        'User',
+    ]),
+    ('sites', [
+        'Site',
+    ]),
+    ('tests', [
+        'RelatedToTestModel',
+        'TestModel',
+    ]),
+]
