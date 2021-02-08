@@ -9,7 +9,7 @@ SECRET_KEY = '!DJANGO_JET_TESTS!'
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 DEBUG_PROPAGATE_EXCEPTIONS = True
-
+SITE_ID = 1
 ROOT_URLCONF = 'jet.tests.urls'
 
 INSTALLED_APPS = (
@@ -21,6 +21,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.admin',
+    'django.contrib.staticfiles',
     'jet.tests',
 )
 
@@ -65,6 +66,7 @@ MEDIA_ROOT = ''
 MEDIA_URL = ''
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 JET_INDEX_DASHBOARD = 'jet.tests.dashboard.TestIndexDashboard'
 JET_APP_INDEX_DASHBOARD = 'jet.tests.dashboard.TestAppIndexDashboard'
