@@ -25,7 +25,7 @@ var cssProcessors = [
     })
 ];
 
-gulp.task('scripts', function() {
+function scripts() {
     return browserify('./jet/static/jet/js/src/main.js')
         .bundle()
         .on('error', function(error) {
@@ -35,9 +35,9 @@ gulp.task('scripts', function() {
         .pipe(buffer())
         .pipe(uglify())
         .pipe(gulp.dest('./jet/static/jet/js/build/'));
-});
+}
 
-gulp.task('styles', function() {
+function styles() {
     return gulp.src('./jet/static/jet/css/**/*.scss')
         .pipe(sourcemaps.init())
         .pipe(sass({
@@ -52,9 +52,9 @@ gulp.task('styles', function() {
         })
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('./jet/static/jet/css'));
-});
+}
 
-gulp.task('vendor-styles', function() {
+function vendor_styles() {
     return merge(
         gulp.src('./node_modules/jquery-ui/themes/base/images/*')
             .pipe(gulp.dest('./jet/static/jet/css/jquery-ui/images/')),
@@ -81,11 +81,9 @@ gulp.task('vendor-styles', function() {
                     console.error(error);
                 }),
             gulp.src([
-                './node_modules/perfect-scrollbar/src/css/main.scss'
+                './node_modules/perfect-scrollbar/css/perfect-scrollbar.css'
             ])
-                .pipe(sass({
-                    outputStyle: 'compressed'
-                }))
+                .pipe(cleanCSS())
                 .on('error', function(error) {
                     console.error(error);
                 })
@@ -106,9 +104,9 @@ gulp.task('vendor-styles', function() {
             })
             .pipe(gulp.dest('./jet/static/jet/css'))
     )
-});
+}
 
-gulp.task('vendor-translations', function() {
+function vendor_translations() {
     return merge(
         gulp.src(['./node_modules/jquery-ui/ui/i18n/*.js'])
             .pipe(gulp.dest('./jet/static/jet/js/i18n/jquery-ui/')),
@@ -117,16 +115,22 @@ gulp.task('vendor-translations', function() {
         gulp.src(['./node_modules/select2/dist/js/i18n/*.js'])
             .pipe(gulp.dest('./jet/static/jet/js/i18n/select2/'))
     )
-});
+}
 
-gulp.task('locales', shell.task('python manage.py compilemessages', { quiet: true }));
 
-gulp.task('build', ['scripts', 'styles', 'vendor-styles', 'vendor-translations', 'locales']);
+var build = gulp.series(gulp.parallel(scripts, styles, vendor_styles,vendor_translations));
 
-gulp.task('watch', function() {
-    gulp.watch('./jet/static/jet/js/src/**/*.js', ['scripts']);
-    gulp.watch('./jet/static/jet/css/**/*.scss', ['styles']);
-    gulp.watch(['./jet/locale/**/*.po', './jet/dashboard/locale/**/*.po'], ['locales']);
-});
+function watch(){
+    gulp.watch('./jet/static/jet/js/src/**/*.js', scripts);
+    gulp.watch('./jet/static/jet/css/**/*.scss', styles);
+}
 
-gulp.task('default', ['build', 'watch']);
+
+exports.styles = styles;
+exports.scripts = scripts;
+exports.watch = watch;
+exports.vendor_styles = vendor_styles;
+exports.vendor_translations = vendor_translations;
+exports.build = build;
+
+exports.default = gulp.series(build, watch);
