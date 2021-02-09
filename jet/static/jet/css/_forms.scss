@@ -26,7 +26,7 @@
   }
 
   &.default {
-    font-weight: lighter;
+    font-weight: normal;
     background-color: $primary-button-background-color;
     color: $primary-button-text-color;
     text-transform: uppercase;
@@ -51,6 +51,15 @@
 
 .button[disabled], input[type=submit][disabled], input[type=button][disabled] {
   opacity: 0.4;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: $input-text-color;
+  opacity: 1; /* Firefox */
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: $input-text-color;
 }
 
 input[type="text"], input[type="email"], input[type="password"], input[type="url"], input[type="number"], textarea, select, .vTextField {

@@ -2433,7 +2433,12 @@ jquery.mousewheel@3.1.9:
   version "3.1.9"
   resolved "https://registry.yarnpkg.com/jquery.mousewheel/-/jquery.mousewheel-3.1.9.tgz"
 
-jquery@3.5.0, jquery@>=1.5.1:
+jquery@1.12.0:
+  version "1.12.0"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-1.12.0.tgz#44653be4e3e4628b106bf2141dfd10fbca6021ef"
+  integrity sha1-RGU75OPkYosQa/IUHf0Q+8pgIe8=
+
+jquery@>=1.5.1:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.5.0.tgz"
 
