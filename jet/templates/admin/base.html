@@ -263,7 +263,7 @@
                                 {% for app in app_list %}
                                     {% if app.has_perms and not app.pinned %}
                                         <div>
-                                            <div class="apps-list-menu-item open" data-app-label="{{ app.app_label }}"
+                                            <div class="apps-list-menu-item" data-app-label="{{ app.app_label }}"
                                                  data-popup-section-class="sidebar-popup-section-{{ app.app_label }}"
                                                  data-order="{{ forloop.counter }}">
                                                 <span class="sidebar-left">
@@ -279,7 +279,7 @@
                                                 </span>
                                             </div>
 
-                                            <div class="apps-list-submenu open">
+                                            <div class="apps-list-submenu">
                                                 {% for model in app.items %}
                                                     {% if model.has_perms %}
                                                         <div class="apps-list-submenu-item apps-list-submenu-item{% if model.name %} {% endif %}{{ model.current|yesno:" current," }}">

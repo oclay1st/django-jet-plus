@@ -344,7 +344,7 @@
     position: relative;
   }
   .apps-list-menu-item{
-    padding: 8px 12px 8px 22px;
+    padding: 10px 12px 10px 22px;
   }
 
   .apps-list .apps-list-submenu-item-link{
@@ -363,18 +363,19 @@
   }
 
   .apps-list-menu-item:hover, .apps-list .apps-list-submenu-item-link:hover{
-    background-color: #2b3647;
+    background-color: $sidebar-contrast-background-color;
     cursor: pointer;
   }
 
   .apps-list .apps-list-submenu-item.current{
-    background-color: #303a4a;
+    background-color: $sidebar-submenu-current-color;
   }
 
   .apps-list .apps-list-menu-item .icon-arrow-right{
     display: block;
   }
 
+  .apps-list .apps-list-submenu,
   .apps-list .apps-list-menu-item .icon-arrow-down{
      display: none;
   }
@@ -383,6 +384,7 @@
      display: none;
   }
 
+  .apps-list .apps-list-submenu.open,
   .apps-list .apps-list-menu-item.open .icon-arrow-down{
      display: block;
   }
