@@ -262,20 +262,42 @@
                             <div class="apps-list">
                                 {% for app in app_list %}
                                     {% if app.has_perms and not app.pinned %}
-                                        <a{% if app.url %} href="{{ app.url }}"{% endif %} class="sidebar-link popup-section-link app-item" data-app-label="{{ app.app_label }}" data-popup-section-class="sidebar-popup-section-{{ app.app_label }}" data-order="{{ forloop.counter }}"{% if app.url_blank %} target="_blank"{% endif %}>
-                                            <span class="sidebar-left collapsible">
-                                                <span class="sidebar-left-pin icon-star pin-toggle"></span>
-                                                <span class="sidebar-left-unpin icon-cross pin-toggle"></span>
-                                            </span>
+                                        <div>
+                                            <div class="apps-list-menu-item open" data-app-label="{{ app.app_label }}"
+                                                 data-popup-section-class="sidebar-popup-section-{{ app.app_label }}"
+                                                 data-order="{{ forloop.counter }}">
+                                                <span class="sidebar-left">
+                                                    <span class="icon-open-external"></span>
+                                                </span>
+                                                <span class="sidebar-right">
+                                                    <span class="sidebar-right-arrow icon-arrow-right"></span>
+                                                    <span class="sidebar-right-arrow icon-arrow-down"></span>
+                                                </span>
 
-                                            <span class="sidebar-right">
-                                                <span class="sidebar-right-arrow icon-arrow-right"></span>
-                                            </span>
+                                                <span class="sidebar-link-label">
+                                                    {{ app.label }}
+                                                </span>
+                                            </div>
 
-                                            <span class="sidebar-link-label">
-                                                {{ app.label }}
-                                            </span>
-                                        </a>
+                                            <div class="apps-list-submenu open">
+                                                {% for model in app.items %}
+                                                    {% if model.has_perms %}
+                                                        <div class="apps-list-submenu-item apps-list-submenu-item{% if model.name %} {% endif %}{{ model.current|yesno:" current," }}">
+                                                            <a{% if model.url %} href="{{ model.url }}"{% endif %}
+                                                                                 class="apps-list-submenu-item-link"
+                                                                    {% if model.url_blank %}
+                                                                                 target="_blank"{% endif %}>
+                                                                <i class="menu-bullet menu-bullet-dot">
+                                                                    <span></span>
+                                                                </i>
+                                                                {{ model.label }}
+                                                            </a>
+                                                        </div>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+
                                     {% endif %}
                                 {% endfor %}
                             </div>
@@ -327,45 +349,6 @@
                     </div>
                 {% endif %}
             </div>
-
-            {% if app_list and not SIDE_MENU_COMPACT %}
-                <div class="sidebar-popup-container">
-                    <div class="sidebar-popup scrollable">
-                        <a href="#" class="sidebar-close sidebar-back">
-                            <span class="sidebar-close-icon icon-arrow-left"></span>
-                        </a>
-                        {% for app in app_list %}
-                            {% if app.has_perms %}
-                                <div class="sidebar-popup-section sidebar-popup-section-{{ app.app_label }}">
-                                    <div class="sidebar-popup-title">
-                                        {{ app.label }}
-                                    </div>
-
-                                    <input class="sidebar-popup-search" placeholder="{% trans "Search" %}...">
-
-                                    <ul class="sidebar-popup-list">
-                                        {% if app.url %}
-                                            <li class="sidebar-popup-list-item app-{{ app.app_label }}{{ app.current|yesno:" current," }}">
-                                                <a href="{{ app.url }}" class="sidebar-popup-list-item-link">{% trans 'Application page' %}</a>
-                                            </li>
-                                        {% endif %}
-
-                                        {% for model in app.items %}
-                                            {% if model.has_perms %}
-                                                <li class="sidebar-popup-list-item{% if model.name %} model-{{ model.name }}{% endif %}{{ model.current|yesno:" current," }}">
-                                                    <a{% if model.url %} href="{{ model.url }}"{% endif %} class="sidebar-popup-list-item-link"{% if model.url_blank %} target="_blank"{% endif %}>
-                                                        {{ model.label }}
-                                                    </a>
-                                                </li>
-                                            {% endif %}
-                                        {% endfor %}
-                                    </ul>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                </div>
-            {% endif %}
         </div>
     {% endif %}
 

@@ -1,9 +1,7 @@
 var $ = require('jquery');
 var SideBarApplicationPinning = require('./application-pinning');
 var SideBarBookmarks = require('./bookmarks');
-var SideBarPopup = require('./popup');
-
-require('perfect-scrollbar');
+var PerfectScroll = require('perfect-scrollbar');
 require('browsernizr/test/touchevents');
 require('browsernizr');
 require('jquery.cookie');
@@ -15,7 +13,7 @@ var SideBar = function($sidebar) {
 SideBar.prototype = {
     initScrollBars: function($sidebar) {
         if (!$(document.documentElement).hasClass('touchevents')) {
-           new PerfectScrollbar('.sidebar-wrapper');
+           new PerfectScroll('.sidebar-wrapper');
         }
     },
     initSideBarToggle: function() {
@@ -68,6 +66,21 @@ SideBar.prototype = {
             }, 500);
         }).bind(this));
     },
+    menuToggle: function(){
+         $('.apps-list-menu-item').on('click', (function () {
+             var $submenu = $(this).next('.apps-list-submenu');
+             if ($submenu.hasClass('open')){
+                 $submenu.slideUp();
+                 $submenu.removeClass('open');
+                 $(this).removeClass('open');
+             }else{
+                 $submenu.slideDown();
+                 $(this).addClass('open');
+                 $submenu.addClass('open');
+             }
+         }));
+         $('.apps-list-submenu:has(div.current)').prev().css("background-color", "#2b3647");
+    },
     storePinStatus: function(status) {
         $.cookie('sidebar_pinned', status, { expires: 365, path: '/' });
     },
@@ -82,13 +95,13 @@ SideBar.prototype = {
 
         new SideBarApplicationPinning($sidebar).run();
         new SideBarBookmarks($sidebar).run();
-        new SideBarPopup($sidebar).run();
 
         try {
             this.initScrollBars($sidebar);
             this.addToggleButton();
             this.initSideBarToggle();
             this.initPinSideBar($sidebar);
+            this.menuToggle();
         } catch (e) {
             console.error(e, e.stack);
         }

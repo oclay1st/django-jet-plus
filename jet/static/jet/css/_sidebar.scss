@@ -335,6 +335,73 @@
     width: auto;
   }
 
+  .apps-list-menu-item, .apps-list .apps-list-submenu-item-link{
+    display: block;
+    color: #c0cad8;
+    vertical-align: middle;
+    -webkit-transition: color .3s,background-color .3s;
+    transition: color .3s,background-color .3s;
+    position: relative;
+  }
+  .apps-list-menu-item{
+    padding: 8px 12px 8px 22px;
+  }
+
+  .apps-list .apps-list-submenu-item-link{
+    padding: 8px 12px 8px 32px;
+  }
+
+  .display-none{
+    display: none;
+  }
+
+  .arrow{
+     -webkit-box-flex:0;
+     -ms-flex:0 0 20px;
+     flex:0 0 20px;
+     font-size:.6rem
+  }
+
+  .apps-list-menu-item:hover, .apps-list .apps-list-submenu-item-link:hover{
+    background-color: #2b3647;
+    cursor: pointer;
+  }
+
+  .apps-list .apps-list-submenu-item.current{
+    background-color: #303a4a;
+  }
+
+  .apps-list .apps-list-menu-item .icon-arrow-right{
+    display: block;
+  }
+
+  .apps-list .apps-list-menu-item .icon-arrow-down{
+     display: none;
+  }
+
+  .apps-list .apps-list-menu-item.open .icon-arrow-right{
+     display: none;
+  }
+
+  .apps-list .apps-list-menu-item.open .icon-arrow-down{
+     display: block;
+  }
+
+   .menu-bullet{
+    vertical-align: middle;
+    align-items: center;
+    line-height: 0;
+  }
+
+  .menu-bullet span{
+    display: inline-block;
+    background-color: #3699ff;
+    width: 4px;
+    height: 4px;
+    border-radius: 100%;
+    margin-bottom: 4px;
+  }
+
   &-right {
     float: right;
     margin-left: 10px;
