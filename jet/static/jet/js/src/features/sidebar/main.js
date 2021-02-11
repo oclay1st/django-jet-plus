@@ -83,7 +83,7 @@ SideBar.prototype = {
          $submenu.addClass('open');
          var $submenuPrev = $submenu.prev();
          $submenuPrev.addClass('open');
-         $submenuPrev.prev().css("background-color", "#2b3647");
+         $submenuPrev.css("background-color", "#2b3647");
     },
     storePinStatus: function(status) {
         $.cookie('sidebar_pinned', status, { expires: 365, path: '/' });

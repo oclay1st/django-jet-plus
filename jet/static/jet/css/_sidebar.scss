@@ -348,11 +348,13 @@
   }
 
   .apps-list .apps-list-submenu-item-link{
-    padding: 8px 12px 8px 32px;
+    padding: 8px 12px 8px 34px;
   }
 
-  .display-none{
-    display: none;
+  .sidebar-app-label{
+    float: left;
+    margin-right: 8px;
+    color: $link-color;
   }
 
   .arrow{
